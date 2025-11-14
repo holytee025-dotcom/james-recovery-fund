@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Donate crypto to James's recovery fund. BTC, ETH, USDT addresses and QR codes available.">
+    <title>Donate - Support James's Recovery</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About James</a></li>
+                <li><a href="donate.html">Donate</a></li>
+                <li><a href="updates.html">Updates</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="hero">
+            <h1>Make a Donation</h1>
+            <p>Your gift helps cover James's hospital bills, surgery, and therapy. We accept crypto directly—every satoshi or wei counts toward his recovery.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="donate-crypto-section">
+            <h2>Donate via Crypto (Recommended & Accepted Method)</h2>
+            <p>Send directly to our secure wallets. Reference "James Recovery Fund" in the memo if possible. Donations are held transparently to fund medical costs. Expect 1-3 confirmations before crediting. Note: Include gas fees for ETH/USDT. Scan QR with your wallet app!</p>
+            
+            <div class="crypto-wallets">
+                <div class="wallet-item">
+                    <h4>Bitcoin (BTC)</h4>
+                    <p class="address">bc1q036k7urq5pvjq29pep96ds4gftgmwycymnzs48</p>
+                    <button class="copy-btn" onclick="copyToClipboard('bc1q036k7urq5pvjq29pep96ds4gftgmwycymnzs48')">Copy Address</button>
+                    <canvas id="qrcode-btc" class="qrcode"></canvas>
+                </div>
+                
+                <div class="wallet-item">
+                    <h4>Ethereum (ETH) / ERC-20</h4>
+                    <p class="address">0xb8DDf6611c7A8a5D726B68F2A5F110BD2B839dAd</p>
+                    <button class="copy-btn" onclick="copyToClipboard('0xb8DDf6611c7A8a5D726B68F2A5F110BD2B839dAd')">Copy Address</button>
+                    <canvas id="qrcode-eth" class="qrcode"></canvas>
+                </div>
+                
+                <div class="wallet-item">
+                    <h4>Tether (USDT) - TRC20 (Tron)</h4>
+                    <p class="address">TWuspo2EFsdb551sVaXJjM7yZ3fGiP2UZ5</p>
+                    <button class="copy-btn" onclick="copyToClipboard('TWuspo2EFsdb551sVaXJjM7yZ3fGiP2UZ5')">Copy Address</button>
+                    <canvas id="qrcode-usdt" class="qrcode"></canvas>
+                </div>
+            </div>
+            
+            <div class="crypto-note">
+                <p><strong>Tip:</strong> Use your wallet app (e.g., MetaMask for ETH, TronLink for USDT, Electrum for BTC) to send. Track txns on explorers like Blockstream.info, Etherscan.io, or Tronscan.org. Questions? <a href="contact.html">Contact us</a>.</p>
+            </div>
+
+            <section class="verification-section">
+                <h3>Verify Your Donation</h3>
+                <p>After sending your crypto payment, email us proof (e.g., transaction hash, screenshot from your wallet, or explorer link) to <a href="mailto:hellsangelbrotherhoodclub8@gmail.com">hellsangelbrotherhoodclub8@gmail.com</a>. We'll confirm receipt, send a personal thank you from the family, and update our progress tracker. Your support for James means everything—expect a reply within 24 hours! ❤️</p>
+            </section>
+        </section>
+
+        <section class="donation-impact">
+            <h3>Your Crypto Impact on James's Recovery</h3>
+            <ul>
+                <li>0.001 BTC (~$60): Covers a therapy session</li>
+                <li>0.02 ETH (~$50): Helps with daily hospital meals</li>
+                <li>50 USDT (~$50): Builds toward surgical follow-up costs</li>
+            </ul>
+        </section>
+
+        <section class="donate-fiat-section">
+            <h2>Or Donate via Card (Fiat)</h2>
+            <p>Secure via Stripe/PayPal if preferred.</p>
+            <form id="donate-form">
+                <label for="amount">Amount ($):</label>
+                <input type="number" id="amount" name="amount" min="10" value="50" required>
+
+                <label for="donor-name">Your Name (Optional):</label>
+                <input type="text" id="donor-name" name="donor-name">
+
+                <label for="email">Email (for receipt):</label>
+                <input type="email" id="email" name="email" required>
+
+                <div class="recurring">
+                    <label><input type="checkbox" name="recurring"> Make this a monthly donation</label>
+                </div>
+
+                <button type="submit" class="cta-btn full-width">Donate Securely</button>
+            </form>
+            <p class="note">Processed via Stripe/PayPal. (Demo: Integrate for production.)</p>
+        </section>
+
+        <div class="share-section">
+            <h4>Tell Your Network</h4>
+            <div class="share-buttons">
+                <a href="#" onclick="shareViaEmail()" class="share-btn email">Share via Email</a>
+                <a href="#" onclick="shareToX()" class="share-btn x">Share on X</a>
+                <a href="#" onclick="shareToFacebook()" class="share-btn fb">Share on Facebook</a>
+                <a href="#" onclick="shareToLinkedIn()" class="share-btn li">Share on LinkedIn</a>
+                <a href="#" onclick="shareToWhatsApp()" class="share-btn whatsapp">Share on WhatsApp</a>
+                <a href="#" onclick="shareToTelegram()" class="share-btn telegram">Share on Telegram</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Support James Fund. All rights reserved. | <a href="contact.html">Contact Us</a></p>
+        <div class="footer-share">
+            <p>Help us reach more supporters: <a href="#" onclick="shareViaEmail()">Email</a> | <a href="#" onclick="shareToX()">X</a> | <a href="#" onclick="shareToFacebook()">Facebook</a> | <a href="#" onclick="shareToLinkedIn()">LinkedIn</a> | <a href="#" onclick="shareToWhatsApp()">WhatsApp</a> | <a href="#" onclick="shareToTelegram()">Telegram</a></p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+                      </html>
