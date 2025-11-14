@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Support James's recovery from his November 13, 2025 motorcycle accident. Donate crypto to cover hospital bills and therapy.">
+    <title>Support James's Recovery - Fundraiser</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About James</a></li>
+                <li><a href="donate.html">Donate</a></li>
+                <li><a href="updates.html">Updates</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="hero">
+            <h1>Support James's Recovery</h1>
+            <p>Helping Our Friend Through a Tough Time After His Motorcycle Accident</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="progress-section">
+            <h2>Our Goal: $50,000</h2>
+            <p>Raised so far: $<span id="raised-amount">Loading...</span> (<span id="progress-percent">Loading...</span>%)</p>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%;"></div>
+                <div class="milestones">
+                    <div class="milestone" data-percent="20" data-unlocked="false">
+                        <span class="milestone-label">Emergency Bills Covered</span>
+                    </div>
+                    <div class="milestone" data-percent="40" data-unlocked="false">
+                        <span class="milestone-label">Therapy Sessions Start</span>
+                    </div>
+                    <div class="milestone" data-percent="60" data-unlocked="false">
+                        <span class="milestone-label">Surgery Support</span>
+                    </div>
+                    <div class="milestone" data-percent="80" data-unlocked="false">
+                        <span class="milestone-label">Rehab Equipment</span>
+                    </div>
+                    <div class="milestone" data-percent="100" data-unlocked="false">
+                        <span class="milestone-label">Goal Achieved!</span>
+                    </div>
+                </div>
+            </div>
+            <a href="donate.html" class="cta-btn">Donate Now</a>
+            <p class="progress-note">Updates automatically from blockchain—refresh for latest!</p>
+            <button id="notify-btn" class="notify-btn">Get Updates on Milestones?</button>
+        </section>
+
+        <section class="story-section">
+            <h3>James's Story</h3>
+            <p>Earlier yesterday, on November 13, 2025, James was in a serious motorcycle accident and is now undergoing surgery for an intracranial bleed and skull fractures. We're raising funds to cover his hospital bills and therapy while he recovers. James is always the first to help others—now he needs us. Any support means the world. Thank you to everyone who has already reached out. ❤️</p>
+            <img src="https://via.placeholder.com/800x400?text=James+Recovery+Photo" alt="James and friends" class="story-img">
+        </section>
+
+        <section class="testimonials-section">
+            <h3>What Friends Are Saying</h3>
+            <div class="testimonial-carousel">
+                <div class="testimonial active">
+                    <blockquote>"James has always been the guy to drop everything and help—last year he spent a weekend rebuilding my garage after the storm. Now it's our turn to support his recovery. ❤️"</blockquote>
+                    <cite>– Sarah M., Close Friend</cite>
+                </div>
+                <div class="testimonial">
+                    <blockquote>"As a fellow rider, accidents hit hard. James's positive spirit shines through even now. Every donation gets us closer to his therapy sessions."</blockquote>
+                    <cite>– Mike R., Motorcycle Club Member</cite>
+                </div>
+                <div class="testimonial">
+                    <blockquote>"Grateful for the quick community response. James would do the same for any of us—let's fill that progress bar!"</blockquote>
+                    <cite>– Anonymous Family Member</cite>
+                </div>
+            </div>
+            <button class="carousel-nav prev" onclick="prevTestimonial()">&#8249;</button>
+            <button class="carousel-nav next" onclick="nextTestimonial()">&#8250;</button>
+        </section>
+
+        <section class="tracker-section">
+            <h3>Live Donation Tracker</h3>
+            <p>Watch contributions roll in—updated from the blockchain. Recent activity below (last 5 incoming txns).</p>
+            
+            <div class="crypto-tabs">
+                <button class="tab-btn active" data-tab="all">All</button>
+                <button class="tab-btn" data-tab="btc">BTC</button>
+                <button class="tab-btn" data-tab="eth">ETH</button>
+                <button class="tab-btn" data-tab="usdt">USDT</button>
+            </div>
+            
+            <div id="tracker-table" class="tracker-content">
+                <p>Loading recent donations...</p>
+            </div>
+        </section>
+
+        <section class="recent-donors">
+            <h3>Recent Donors</h3>
+            <ul>
+                <li>Anonymous - $500</li>
+                <li>Sarah M. - $200</li>
+                <li>Mike & Family - $100</li>
+            </ul>
+            <p><em>Thank you to all our supporters!</em></p>
+        </section>
+
+        <div class="share-section">
+            <h4>Spread the Word</h4>
+            <div class="share-buttons">
+                <a href="#" onclick="shareViaEmail()" class="share-btn email">Share via Email</a>
+                <a href="#" onclick="shareToX()" class="share-btn x">Share on X</a>
+                <a href="#" onclick="shareToFacebook()" class="share-btn fb">Share on Facebook</a>
+                <a href="#" onclick="shareToLinkedIn()" class="share-btn li">Share on LinkedIn</a>
+                <a href="#" onclick="shareToWhatsApp()" class="share-btn whatsapp">Share on WhatsApp</a>
+                <a href="#" onclick="shareToTelegram()" class="share-btn telegram">Share on Telegram</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Support James Fund. All rights reserved. | <a href="contact.html">Contact Us</a></p>
+        <div class="footer-share">
+            <p>Help us reach more supporters: <a href="#" onclick="shareViaEmail()">Email</a> | <a href="#" onclick="shareToX()">X</a> | <a href="#" onclick="shareToFacebook()">Facebook</a> | <a href="#" onclick="shareToLinkedIn()">LinkedIn</a> | <a href="#" onclick="shareToWhatsApp()">WhatsApp</a> | <a href="#" onclick="shareToTelegram()">Telegram</a></p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+  </html>
