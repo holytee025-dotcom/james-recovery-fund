@@ -1,0 +1,119 @@
+/* Reset and Base */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; background: #f9f9f9; }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+/* Header and Nav */
+header { background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%); color: white; }
+nav ul { list-style: none; display: flex; justify-content: center; padding: 1rem 0; }
+nav li { margin: 0 1rem; }
+nav a { color: white; text-decoration: none; font-weight: bold; }
+nav a:hover { text-decoration: underline; }
+.hero { text-align: center; padding: 2rem 0; }
+
+/* Sections */
+.progress-section, .story-section, .about-content, .donate-form-section, .contact-section, .update, .testimonials-section, .tracker-section, .donate-crypto-section, .verification-section { 
+    background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 2rem; 
+}
+.progress-bar { width: 100%; height: 20px; background: #ddd; border-radius: 10px; overflow: hidden; margin: 1rem 0; position: relative; }
+.progress-fill { height: 100%; background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%); transition: width 0.3s ease; }
+.story-img, .update-img { width: 100%; border-radius: 5px; margin-top: 1rem; }
+.team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0; }
+.team-member img { width: 100%; border-radius: 50%; }
+.recent-donors ul, .donation-impact ul { list-style: none; padding: 0; }
+.recent-donors li, .donation-impact li { margin-bottom: 0.5rem; }
+
+/* Forms */
+form { max-width: 400px; margin: 0 auto; }
+label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
+input, textarea { width: 100%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 5px; }
+.full-width { width: 100%; }
+.note { text-align: center; font-size: 0.9rem; color: #666; }
+
+/* Buttons */
+.cta-btn { display: inline-block; background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 5px; font-size: 1.2rem; margin-top: 1rem; }
+.cta-btn:hover, button[type="submit"]:hover { opacity: 0.9; }
+
+/* Crypto Donations */
+.donate-crypto-section { margin-bottom: 2rem; }
+.crypto-wallets { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1rem 0; }
+.wallet-item { background: #f0f8ff; padding: 1rem; border-radius: 8px; text-align: center; }
+.wallet-item h4 { margin-bottom: 0.5rem; color: #ff6b6b; }
+.address { font-family: monospace; background: #fff; padding: 0.5rem; border-radius: 4px; word-break: break-all; margin-bottom: 0.5rem; }
+.copy-btn { background: #ff6b6b; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; }
+.copy-btn:hover { opacity: 0.9; }
+.crypto-note { background: #e8f5e8; padding: 1rem; border-radius: 8px; text-align: center; }
+.donate-fiat-section { border-top: 1px solid #ddd; padding-top: 2rem; opacity: 0.8; }
+
+/* QR Codes */
+.qrcode { display: block; margin: 1rem auto; border: 1px solid #ddd; border-radius: 4px; }
+
+/* Verification Section */
+.verification-section { background: #e8f5e8; padding: 1.5rem; border-radius: 8px; margin: 2rem 0; text-align: center; border-left: 4px solid #ff6b6b; }
+.verification-section h3 { color: #ff6b6b; margin-bottom: 0.5rem; }
+.verification-section a { color: #ff6b6b; font-weight: bold; text-decoration: underline; }
+
+/* Testimonials */
+.testimonials-section { text-align: center; position: relative; }
+.testimonial-carousel { position: relative; height: 150px; overflow: hidden; }
+.testimonial { opacity: 0; transition: opacity 0.5s ease; position: absolute; width: 100%; top: 0; left: 0; }
+.testimonial.active { opacity: 1; }
+.testimonial blockquote { font-style: italic; font-size: 1.1rem; margin-bottom: 1rem; color: #555; }
+.testimonial cite { font-weight: bold; color: #ff6b6b; }
+.carousel-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,107,107,0.7); color: white; border: none; padding: 0.5rem 1rem; cursor: pointer; font-size: 1.5rem; border-radius: 50%; }
+.prev { left: 10px; }
+.next { right: 10px; }
+.carousel-nav:hover { background: #ff6b6b; }
+
+/* Tracker */
+.tracker-section h3 { color: #ff6b6b; margin-bottom: 0.5rem; }
+.crypto-tabs { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem; }
+.tab-btn { padding: 0.5rem 1rem; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 5px; }
+.tab-btn.active { background: #ff6b6b; color: white; }
+.tracker-content table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+.tracker-content th, .tracker-content td { padding: 0.5rem; border-bottom: 1px solid #ddd; text-align: left; }
+.tracker-content th { background: #f9f9f9; }
+.tracker-content a { color: #ff6b6b; text-decoration: none; }
+.tracker-content a:hover { text-decoration: underline; }
+
+/* Milestones */
+.milestones { position: absolute; top: -25px; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+.milestone { background: rgba(255, 107, 107, 0.3); border: 2px solid #ff6b6b; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold; color: #ff6b6b; transition: all 0.3s ease; cursor: pointer; }
+.milestone.unlocked { background: #ff6b6b; color: white; animation: milestoneUnlock 0.5s ease; box-shadow: 0 0 10px rgba(255, 107, 107, 0.5); }
+.milestone-label { position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; opacity: 0; transition: opacity 0.3s ease; }
+.milestone:hover .milestone-label { opacity: 1; }
+.milestone.unlocked .milestone-label { opacity: 1; color: #ff6b6b; font-weight: bold; }
+@keyframes milestoneUnlock { 0% { transform: scale(0.5); } 100% { transform: scale(1); } }
+
+/* Social Sharing */
+.share-section { text-align: center; margin: 1rem 0; padding: 1rem; background: #f0f8ff; border-radius: 8px; }
+.share-section h4 { margin-bottom: 0.5rem; color: #ff6b6b; }
+.share-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+.share-btn { padding: 0.5rem 1rem; text-decoration: none; border-radius: 5px; font-weight: bold; color: white; transition: opacity 0.3s; }
+.share-btn:hover { opacity: 0.8; }
+.share-btn.x { background: #1da1f2; }
+.share-btn.fb { background: #3b5998; }
+.share-btn.li { background: #0077b5; }
+.share-btn.email { background: #6c757d; }
+.share-btn.whatsapp { background: #25D366; }
+.share-btn.telegram { background: #0088cc; }
+.footer-share { margin-top: 1rem; font-size: 0.9rem; border-top: 1px solid #555; padding-top: 0.5rem; }
+.footer-share a { color: #ccc; margin: 0 0.5rem; }
+
+/* Notification Button */
+.notify-btn { background: #ff6b6b; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; font-size: 0.9rem; margin-top: 0.5rem; transition: opacity 0.3s; }
+.notify-btn:hover { opacity: 0.9; }
+.notify-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Progress Note */
+.progress-note { font-size: 0.9rem; color: #666; text-align: center; margin-top: 0.5rem; }
+
+/* Footer */
+footer { text-align: center; padding: 1rem; background: #333; color: white; margin-top: 2rem; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav ul { flex-direction: column; }
+    .container { padding: 10px; }
+    .share-buttons { flex-direction: column; align-items: center; }
+        }
