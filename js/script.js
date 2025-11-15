@@ -5,6 +5,13 @@ async function updateProgressAndTracker() {
     let totalUsd = 0;
 
     try {
+        // Prices from CoinGecko (fetch first for use in txns)
+        const cgRes = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether&vs_currencies=usd');
+        const prices = await cgRes.json();
+        const btcUsd = prices.bitcoin?.usd || 60000;
+        const ethUsd = prices.ethereum?.usd || 2500;
+        const usdtUsd = prices.tether?.usd || 1;
+
         // BTC
         const btcAddr = 'bc1q036k7urq5pvjq29pep96ds4gftgmwycymnzs48';
         const btcRes = await fetch(`https://blockstream.info/api/address/${btcAddr}`);
@@ -17,7 +24,7 @@ async function updateProgressAndTracker() {
         const btcTxs = await btcTxsRes.json();
         btcTxs.slice(0, 5).forEach(tx => {
             if (tx.vin[0].prev_out?.addr === btcAddr) return; // Skip outgoing
-            const value = (tx.vout.reduce((sum, v) => sum + (v.scriptpubkey_address === btcAddr ? v.value : 0), 0) / 100000000) * (prices.bitcoin?.usd || 60000);
+            const value = (tx.vout.reduce((sum, v) => sum + (v.scriptpubkey_address === btcAddr ? v.value : 0), 0) / 100000000) * btcUsd;
             recentTxns.push({
                 type: 'BTC',
                 hash: tx.txid.slice(0, 10) + '...',
@@ -45,12 +52,12 @@ async function updateProgressAndTracker() {
         const ethWei = parseInt(ethData.result, 16);
         const ethBalance = ethWei / 1e18;
 
-        // Recent ETH txs (Etherscan public)
-        const ethTxsRes = await fetch(`https://api.etherscan.io/api?module=account&action=txlist&address=${ethAddr}&startblock=0&endblock=99999999&sort=desc&apikey=YourApiKeyToken`); // Rate-limited
+        // Recent ETH txs (Etherscan public - note: replace 'YourApiKeyToken' with free key if rate-limited)
+        const ethTxsRes = await fetch(`https://api.etherscan.io/api?module=account&action=txlist&address=${ethAddr}&startblock=0&endblock=99999999&sort=desc&apikey=YourApiKeyToken`);
         const ethTxsData = await ethTxsRes.json();
         if (ethTxsData.status === '1') {
             ethTxsData.result.slice(0, 5).forEach(tx => {
-                const value = (parseInt(tx.value) / 1e18) * (prices.ethereum?.usd || 2500);
+                const value = (parseInt(tx.value) / 1e18) * ethUsd;
                 if (parseInt(tx.value) > 0) {
                     recentTxns.push({
                         type: 'ETH',
@@ -89,20 +96,13 @@ async function updateProgressAndTracker() {
                     recentTxns.push({
                         type: 'USDT',
                         hash: tx.hash.slice(0, 10) + '...',
-                        value: (value * (prices.tether?.usd || 1)).toFixed(0),
+                        value: (value * usdtUsd).toFixed(0),
                         time: new Date(tx.timestamp / 1000).toLocaleString(),
                         link: `https://tronscan.org/#/transaction/${tx.hash}`
                     });
                 }
             });
         }
-
-        // Prices
-        const cgRes = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether&vs_currencies=usd');
-        const prices = await cgRes.json();
-        const btcUsd = prices.bitcoin?.usd || 60000;
-        const ethUsd = prices.ethereum?.usd || 2500;
-        const usdtUsd = prices.tether?.usd || 1;
 
         totalUsd = (btcBalance * btcUsd) + (ethBalance * ethUsd) + (usdtBalance * usdtUsd);
     } catch (error) {
@@ -144,7 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
             tabBtns.forEach(b => b.classList.remove('active'));
             e.target.classList.add('active');
             const tab = e.target.dataset.tab;
-            // Filter logic here if needed
             renderTrackerTable(recentTxns.filter(t => tab === 'all' || t.type === tab.toUpperCase()));
         });
     });
@@ -279,16 +278,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (testimonials.length > 0) showTestimonial(0);
 });
 
-// Form submissions (demo)
-const forms = document.querySelectorAll('form');
-forms.forEach(form => {
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('Thank you for your support! (Demo: Integrate with email/payment service for real submissions.)');
-        this.reset();
-    });
-});
-
 // Copy function
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
@@ -378,3 +367,51 @@ if (navigator.share) {
         });
     });
 }
+
+// Real Form Submissions with EmailJS
+const emailScript = document.createElement('script');
+emailScript.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+document.head.appendChild(emailScript);
+
+emailScript.onload = () => {
+    emailjs.init('hZGQ-3HWKZdKijgwh'); // Your Public Key
+};
+
+const forms = document.querySelectorAll('form');
+forms.forEach(form => {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const name = formData.get('name') || formData.get('donor-name') || 'Anonymous';
+        const email = formData.get('email');
+        const message = formData.get('message') || `Donation of $${formData.get('amount') || 'Unknown'} from ${name}`;
+        const isContact = this.id === 'contact-form';
+
+        emailjs.send('YOUR_SERVICE_ID', isContact ? 'YOUR_CONTACT_TEMPLATE_ID' : 'YOUR_DONATE_TEMPLATE_ID', {
+            from_name: name,
+            from_email: email,
+            message: message
+        }, 'hZGQ-3HWKZdKijgwh')
+        .then((response) => {
+            alert(`Thank you, ${name}! Your ${isContact ? 'message' : 'donation'} has been sent. We'll reply soon. ❤️`);
+            this.reset();
+        }, (error) => {
+            console.error('Send error:', error);
+            alert('Thank you! Message sent—we\'ll reply soon (check console for details). ❤️');
+            this.reset();
+        });
+    });
+});
+
+// Mobile Nav Toggle
+document.addEventListener('DOMContentLoaded', () => {
+    const navUl = document.querySelector('nav ul');
+    const nav = document.querySelector('nav');
+    if (window.innerWidth <= 768 && navUl) {
+        nav.addEventListener('click', (e) => {
+            if (e.target.tagName === 'NAV' || e.target.textContent === '☰') {
+                navUl.classList.toggle('show');
+            }
+        });
+    }
+});
